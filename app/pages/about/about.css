@@ -42,7 +42,7 @@
 .content button {
     position: fixed;
     right: 0;
-    top: 50%;
+    bottom: 25%;
     transform: rotate(-90deg) translate(50%, -50%);
     transform-origin: right;
 
@@ -50,9 +50,16 @@
     color: #fff;
     border: none;
     border-radius: 0.2em;
-    font-size: 2em;
+    font-size: calc(10px + 2vh);
     padding: 0.2em;
     font-family: arial;
     font-weight: bold;
+    opacity: 0.9;
 }
-  
+
+.content button:hover {
+    opacity: 1;
+    transform: rotate(-90deg) translate(50%, -54%);
+    cursor: pointer;
+}
+
