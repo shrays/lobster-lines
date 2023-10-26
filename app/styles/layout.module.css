@@ -11,11 +11,7 @@
 }
 
 .logo {
-  /* height: 40vmin;
-  pointer-events: none; */
-
-  /* width: 6vmin;
-  height: auto; */
+  pointer-events: none;
 
   height: 3.5em;
   width: auto;
@@ -47,7 +43,6 @@
   padding: 10px;
   text-align: center;
   width: 100%;
-  /* padding: 2em; */
 }
 
 .disclaimer {
