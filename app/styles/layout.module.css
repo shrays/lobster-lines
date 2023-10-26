@@ -11,8 +11,14 @@
 }
 
 .logo {
-  height: 40vmin;
-  pointer-events: none;
+  /* height: 40vmin;
+  pointer-events: none; */
+
+  /* width: 6vmin;
+  height: auto; */
+
+  height: 3.5em;
+  width: auto;
 }
 
 .header {
@@ -21,6 +27,7 @@
 
 .main {
   grid-area: main;
+  align-self: start;
 }
 
 .header,
@@ -34,16 +41,42 @@
 .footer {
   grid-area: footer;
   justify-self: center;
+
+  background-color: rgb(20, 20, 20);
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  /* padding: 2em; */
+}
+
+.disclaimer {
+  margin-top: 10px;
+  font-size: 0.9em;
 }
 
 .nav {
   grid-area: nav;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  justify-content: right;
+  gap: 20px;
   padding: 8px;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(1.5px + 1.5vmin);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  justify-content: space-between;
+  padding: 0.2em 5em 0.2em 5em;
+}
+
+.navLinks {
+  display: flex;
+  gap: 1.2em;
+}
+
+.link:not(:last-child) {
+  margin-right: 8px;
 }
 
 .link:hover {
@@ -51,13 +84,18 @@
 }
 
 .link {
-  color: #704cb6;
+  color: rgb(215, 58, 65);
+  white-space: nowrap;
 }
 
 .link.active {
   text-decoration: underline;
 }
 
+.highlighted {
+  color: rgb(251, 68, 77);
+}
+/* 
 @media (prefers-reduced-motion: no-preference) {
   .logo {
     animation: logo-float infinite 3s ease-in-out;
@@ -74,4 +112,4 @@
   100% {
     transform: translateY(0px);
   }
-}
+} */
