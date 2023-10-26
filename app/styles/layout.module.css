@@ -12,7 +12,7 @@
 
 .logo {
   pointer-events: none;
-  height: 6vw;
+  height: 4vw;
   width: auto;
 }
 
@@ -56,7 +56,7 @@
   justify-content: right;
   gap: 20px;
   padding: 8px;
-  font-size: calc(1.5px + 1.3vw);
+  font-size: calc(1.5px + 1.1vw);
   background-color: rgb(255, 255, 255);
   box-shadow: 0 4px 9px rgba(0, 0, 0, 0.2);
   font-weight: bold;
