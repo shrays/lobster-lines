@@ -12,8 +12,7 @@
 
 .logo {
   pointer-events: none;
-
-  height: 3.5em;
+  height: 6vw;
   width: auto;
 }
 
@@ -57,7 +56,7 @@
   justify-content: right;
   gap: 20px;
   padding: 8px;
-  font-size: calc(1.5px + 1.5vmin);
+  font-size: calc(1.5px + 1.3vw);
   background-color: rgb(255, 255, 255);
   box-shadow: 0 4px 9px rgba(0, 0, 0, 0.2);
   font-weight: bold;
@@ -79,7 +78,7 @@
 }
 
 .link {
-  color: rgb(215, 58, 65);
+  color: black;
   white-space: nowrap;
 }
 
