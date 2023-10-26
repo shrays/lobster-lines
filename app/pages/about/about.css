@@ -5,14 +5,15 @@
 
 .photo-container {
     float: right;
-    width: 25%;
+    width: 40%;
+    max-width: 380px;
     padding: 1%;
     transform: scale(110%);
 }
 
 .photo {
     width: 100%;
-    display: block;
+    /* display: block; */
 }
 
 .photo-container figcaption {
