@@ -1,0 +1,57 @@
+.content {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.photo-container {
+    float: right;
+    width: 25%;
+    padding: 1%;
+    transform: scale(110%);
+}
+
+.photo {
+    width: 100%;
+    display: block;
+}
+
+.photo-container figcaption {
+    text-align: center;
+    font-size: 1em;
+    margin-top: 8px;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.link {
+    color: rgb(215, 58, 65);
+    white-space: nowrap;
+}
+
+.link.active {
+    text-decoration: underline;
+}
+
+.refer {
+    text-align: center;
+}
+
+.content button {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: rotate(-90deg) translate(50%, -50%);
+    transform-origin: right;
+
+    background-color: rgb(215, 58, 65);
+    color: #fff;
+    border: none;
+    border-radius: 0.2em;
+    font-size: 2em;
+    padding: 0.2em;
+    font-family: arial;
+    font-weight: bold;
+}
+  
