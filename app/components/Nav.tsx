@@ -12,7 +12,12 @@ export const Nav = () => {
 
   return (
     <nav className={styles.nav}>
-      <img src="/logo_text.webp" alt="Logo" className={styles.logo} />
+      <Link
+        className={`${styles.link} ${pathname === '/' ? styles.active : ''}`}
+        href="/"
+      >
+        <img src="/logo_text.webp" alt="Logo" className={styles.logo} />
+      </Link>
 
       <div className={styles.navLinks}>
         <Link
