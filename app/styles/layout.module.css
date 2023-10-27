@@ -5,7 +5,7 @@
     'header'
     'main'
     'footer';
-  grid-template-rows: auto auto 1fr 36px;
+  grid-template-rows: auto auto 1fr auto;
   align-items: center;
   min-height: 100vh;
 }
@@ -74,7 +74,9 @@
 }
 
 .link:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  color: rgb(251, 68, 77);
+  transition: 0.3s;
 }
 
 .link {
@@ -82,9 +84,9 @@
   white-space: nowrap;
 }
 
-.link.active {
+/* .link.active {
   text-decoration: underline;
-}
+} */
 
 .highlighted {
   color: rgb(251, 68, 77);
