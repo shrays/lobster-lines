@@ -46,7 +46,8 @@
     transform: rotate(-90deg) translate(50%, -50%);
     transform-origin: right;
 
-    background-color: rgb(215, 58, 65);
+    /* background-color: rgb(215, 58, 65); */
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 0.2em;
@@ -58,7 +59,7 @@
 }
 
 .content button:hover {
-    opacity: 1;
+    background-color: var(--secondary-color);
     transform: rotate(-90deg) translate(50%, -54%);
     cursor: pointer;
 }

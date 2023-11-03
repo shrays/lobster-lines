@@ -11,7 +11,7 @@ export default function AboutPage() {
           <figcaption>Deloitte Consulting, 2023</figcaption>
         </figure>
         <p>
-        Hello! I'm Shray, a senior at Barrett, ASU majoring in CS and minoring in business. I am interested in using my software development skills and ML/Data Engineering background to address real-world problems. I have experience in full-stack web development, data handling, and prediction modeling. Currently working on a web project calculating/visualizing a cost-of-living index using open company APIs. 
+          Hello! I'm Shray, a senior at Barrett, ASU majoring in CS and minoring in business. I am interested in using my software development skills and ML/Data Engineering background to address real-world problems. I have experience in full-stack web development, data handling, and prediction modeling. Currently working on a web project calculating/visualizing a cost-of-living index using open company APIs. 
         </p>
         <br />
         <p className='refer'>
@@ -52,3 +52,7 @@ export default function AboutPage() {
     </>
   )
 }
+
+// export const metadata = {
+//   title: 'Lobster Lines :: About',
+// };

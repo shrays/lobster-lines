@@ -12,7 +12,7 @@
 
 .logo {
   pointer-events: none;
-  height: 4vw;
+  height: 5vh;
   width: auto;
 }
 
@@ -23,6 +23,7 @@
 .main {
   grid-area: main;
   align-self: start;
+  z-index: 0;
 }
 
 .header,
@@ -50,18 +51,19 @@
 }
 
 .nav {
+  z-index: 1;
   grid-area: nav;
   display: flex;
   align-items: center;
   justify-content: right;
   gap: 20px;
   padding: 8px;
-  font-size: calc(1.5px + 1.1vw);
+  font-size: calc(3px + 1.3vh);
   background-color: rgb(255, 255, 255);
   box-shadow: 0 4px 9px rgba(0, 0, 0, 0.2);
   font-weight: bold;
   justify-content: space-between;
-  padding: 0.2em 5em 0.2em 5em;
+  padding: 0.2em 6vw 0.2em 6vw;
 }
 
 .navLinks {
@@ -89,7 +91,8 @@
 } */
 
 .highlighted {
-  color: rgb(251, 68, 77);
+  color: var(--primary-color);
+  /* color: rgb(251, 68, 77); */
 }
 /* 
 @media (prefers-reduced-motion: no-preference) {
