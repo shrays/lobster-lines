@@ -1,10 +1,20 @@
-/* Components */
-import { Counter } from './components/Counter/Counter'
+// /* Components */
+// import { Counter } from './components/Counter/Counter'
+
+// export default function IndexPage() {
+//   return <Counter />
+// }
+
+// export const metadata = {
+//   title: 'Lobster Lines',
+// }
+
+import MapComponent from './components/Map';
 
 export default function IndexPage() {
-  return <Counter />
+  return <MapComponent />;
 }
 
 export const metadata = {
   title: 'Lobster Lines',
-}
+};

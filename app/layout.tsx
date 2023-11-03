@@ -1,6 +1,8 @@
 /* Components */
 import { Providers } from '@/lib/providers'
 import { Nav } from './components/Nav'
+import MapComponent from './components/Map';
+
 
 /* Instruments */
 import styles from './styles/layout.module.css'
@@ -11,6 +13,11 @@ export default function RootLayout(props: React.PropsWithChildren) {
     <Providers>
       <html lang="en">
         <title>Lobster Lines</title>
+        <head>
+          <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+          <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
+          <link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" />
+        </head>
         <body>
           <section className={styles.container}>
             <Nav />
@@ -18,8 +25,10 @@ export default function RootLayout(props: React.PropsWithChildren) {
             {/* <header className={styles.header}>
               <img src="/logo.svg" className={styles.logo} alt="logo" />
             </header> */}
-
-            <main className={styles.main}>{props.children}</main>
+            
+            <main className={styles.main}>
+              {props.children}
+            </main>
 
             <footer className={styles.footer}>
               <span>Copyright © 2023 <span className={styles.highlighted}>Lobster Lines</span>. All Rights Reserved</span>
