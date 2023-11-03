@@ -16,9 +16,11 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-}
+} 
 
 * {
+  --primary-color: rgb(251, 68, 77);
+  --secondary-color: rgb(217, 60, 70);
   box-sizing: border-box;
 }
 
