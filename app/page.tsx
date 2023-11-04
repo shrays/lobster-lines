@@ -1,20 +1,29 @@
-// /* Components */
-// import { Counter } from './components/Counter/Counter'
+"use client"
 
-// export default function IndexPage() {
-//   return <Counter />
-// }
-
-// export const metadata = {
-//   title: 'Lobster Lines',
-// }
-
+import React, { useEffect, useState } from 'react';
 import MapComponent from './components/Map';
 
-export default function IndexPage() {
-  return <MapComponent />;
-}
-
-export const metadata = {
-  title: 'Lobster Lines',
+type Location = {
+  latitude: number;
+  longitude: number;
 };
+
+export default function IndexPage() {
+  const [locationData, setLocationData] = useState<Location[] | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/lobster-locations');
+        const json = await response.json();
+        setLocationData(json.map((loc: any) => ({ latitude: loc.latitude, longitude: loc.longitude })));
+      } catch (error) {
+        console.error('Error fetching data: ', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return <MapComponent locations={locationData} />;
+}
