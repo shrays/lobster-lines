@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.1.1",
     "maplibre-gl": "^3.5.2",
     "next": "latest",
     "node-fetch": "^3.3.2",
