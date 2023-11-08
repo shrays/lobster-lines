@@ -30,7 +30,7 @@ export const Nav = () => {
           className={`${styles.link} ${
             pathname === '/comparisons' ? styles.active : ''
           }`}
-          href="/pages/comparisons"
+          href="/comparisons"
         >
           COMPARISONS
         </Link>
@@ -38,7 +38,7 @@ export const Nav = () => {
           className={`${styles.link} ${
             pathname === '/peak-times' ? styles.active : ''
           }`}
-          href="/pages/peak-times"
+          href="/peak-times"
         >
           PEAK TIMES
         </Link>
@@ -46,7 +46,7 @@ export const Nav = () => {
           className={`${styles.link} ${
             pathname === '/blog' ? styles.active : ''
           }`}
-          href="/pages/blog"
+          href="/blog"
         >
           BLOG
         </Link>
@@ -54,7 +54,7 @@ export const Nav = () => {
           className={`${styles.link} ${
             pathname === '/about' ? styles.active : ''
           }`}
-          href="/pages/about"
+          href="/about"
         >
           ABOUT
         </Link>

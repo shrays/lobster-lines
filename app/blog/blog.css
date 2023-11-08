@@ -1,0 +1,69 @@
+.content {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.photo-container {
+    float: right;
+    width: 40%;
+    max-width: 380px;
+    padding: 1%;
+    transform: scale(110%);
+}
+
+.photo {
+    width: 100%;
+    /* display: block; */
+}
+
+.photo-container figcaption {
+    text-align: center;
+    font-size: 1em;
+    margin-top: 8px;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.link {
+    color: rgb(215, 58, 65);
+    white-space: nowrap;
+}
+
+.link.active {
+    text-decoration: underline;
+}
+
+.refer {
+    text-align: center;
+}
+
+.content button {
+    position: fixed;
+    right: 0;
+    bottom: 25%;
+    transform: rotate(-90deg) translate(50%, -50%);
+    transform-origin: right;
+
+    /* background-color: rgb(215, 58, 65); */
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 0.2em;
+    font-size: calc(10px + 2vh);
+    padding: 0.2em;
+    font-family: arial;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+.content button:hover {
+    background-color: var(--secondary-color);
+    transform: rotate(-90deg) translate(50%, -54%);
+    cursor: pointer;
+}
+
+h1 {
+    text-align: center;
+}
