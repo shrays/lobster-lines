@@ -12,7 +12,7 @@
 
 .logo {
   pointer-events: none;
-  height: 5vh;
+  height: 55px;
   width: auto;
 }
 
@@ -58,7 +58,7 @@
   justify-content: right;
   gap: 20px;
   padding: 8px;
-  font-size: calc(3px + 1.3vh);
+  font-size: 20px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 4px 9px rgba(0, 0, 0, 0.2);
   font-weight: bold;
@@ -76,7 +76,6 @@
 }
 
 .link:hover {
-  /* text-decoration: underline; */
   color: rgb(251, 68, 77);
   transition: 0.3s;
 }
@@ -92,8 +91,8 @@
 
 .highlighted {
   color: var(--primary-color);
-  /* color: rgb(251, 68, 77); */
 }
+
 /* 
 @media (prefers-reduced-motion: no-preference) {
   .logo {
