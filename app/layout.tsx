@@ -11,6 +11,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
         {/* <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' /> */}
         <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
         <link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" />
+        {/* <link rel="preload" href="https://www.lobsterlines.com/_next/static/css/eb22dcd54d4ce9f0.css" as="style" /> */}
       </head>
       <body>
         <section className={styles.container}>
