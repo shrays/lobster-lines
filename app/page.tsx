@@ -6,6 +6,7 @@ import MapComponent from './components/Map';
 type Location = {
   latitude: number;
   longitude: number;
+  estimatedWaitTime: number;
 };
 
 export default function IndexPage() {
@@ -16,7 +17,7 @@ export default function IndexPage() {
       try {
         const response = await fetch('/api/lobster-locations');
         const json = await response.json();
-        setLocationData(json.map((loc: any) => ({ latitude: loc.latitude, longitude: loc.longitude })));
+        setLocationData(json.map((loc: any) => ({ latitude: loc.latitude, longitude: loc.longitude, estimatedWaitTime: loc.estimatedWaitTime })));
       } catch (error) {
         console.error('Error fetching data: ', error);
       }
@@ -25,5 +26,9 @@ export default function IndexPage() {
     fetchData();
   }, []);
 
-  return <MapComponent locations={locationData} />;
+  return (
+    <>
+      <MapComponent locations={locationData} />
+    </>
+  )
 }

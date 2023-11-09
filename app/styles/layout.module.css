@@ -93,6 +93,10 @@
   color: var(--primary-color);
 }
 
+.maplibregl-popup {
+  max-width: 200px;
+}
+
 /* 
 @media (prefers-reduced-motion: no-preference) {
   .logo {

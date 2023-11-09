@@ -5,6 +5,7 @@ import maplibregl from 'maplibre-gl';
 type Location = {
   latitude: number;
   longitude: number;
+  estimatedWaitTime: number;
 };
 
 type MapComponentProps = {
@@ -14,6 +15,14 @@ type MapComponentProps = {
 const MapComponent: React.FC<MapComponentProps> = ({ locations }) => {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const apiKey = process.env.NEXT_PUBLIC_MAPTILER_KEY;
+
+  const getMarkerColor = (waitTime: number) => {
+    if (waitTime === 0) return 'green';
+    if (waitTime === -1) return 'black';
+    if (waitTime >= 5 && waitTime <= 25) return 'orange';
+    if (waitTime >= 30) return 'red';
+    return 'gray';
+  };
 
   useEffect(() => {
     if (!mapContainer.current || !apiKey) return;
@@ -31,8 +40,16 @@ const MapComponent: React.FC<MapComponentProps> = ({ locations }) => {
     // Check if locations is not null before creating markers
     if (locations) {
       locations.forEach((loc) => {
-        new maplibregl.Marker()
+        const popup = new maplibregl.Popup({offset: 25}).setText('Time: ' + loc.estimatedWaitTime);
+        const el = document.createElement('div');
+        el.style.width = '1vh';
+        el.style.height = '1vh';
+        el.style.borderRadius = '50%';
+        el.style.backgroundColor = getMarkerColor(loc.estimatedWaitTime);
+
+        new maplibregl.Marker({ element: el })
           .setLngLat([loc.longitude, loc.latitude])
+          .setPopup(popup)
           .addTo(map);
       });
     }
