@@ -10,12 +10,6 @@
   min-height: 100vh;
 }
 
-.logo {
-  pointer-events: none;
-  height: 55px;
-  width: auto;
-}
-
 .header {
   grid-area: header;
 }
@@ -50,45 +44,6 @@
   font-size: 0.9em;
 }
 
-.nav {
-  z-index: 1;
-  grid-area: nav;
-  display: flex;
-  align-items: center;
-  justify-content: right;
-  gap: 20px;
-  padding: 8px;
-  font-size: 20px;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.2);
-  font-weight: bold;
-  justify-content: space-between;
-  padding: 0.2em 6vw 0.2em 6vw;
-}
-
-.navLinks {
-  display: flex;
-  gap: 1.2em;
-}
-
-.link:not(:last-child) {
-  margin-right: 8px;
-}
-
-.link:hover {
-  color: rgb(251, 68, 77);
-  transition: 0.3s;
-}
-
-.link {
-  color: black;
-  white-space: nowrap;
-}
-
-/* .link.active {
-  text-decoration: underline;
-} */
-
 .highlighted {
   color: var(--primary-color);
 }
@@ -96,22 +51,3 @@
 .maplibregl-popup {
   max-width: 200px;
 }
-
-/* 
-@media (prefers-reduced-motion: no-preference) {
-  .logo {
-    animation: logo-float infinite 3s ease-in-out;
-  }
-}
-
-@keyframes logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-} */
