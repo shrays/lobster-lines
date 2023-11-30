@@ -18,22 +18,23 @@ const MapComponent: React.FC<MapComponentProps> = ({ locations }) => {
 
   const getMarkerColor = (waitTime: number) => {
     if (waitTime === 0) return 'green';
-    if (waitTime === -1) return 'black';
-    if (waitTime >= 5 && waitTime <= 25) return 'orange';
-    if (waitTime >= 30) return 'red';
-    return 'gray';
+    if (waitTime === -1) return 'gray';
+    if (waitTime >= 5 && waitTime <= 10) return 'orange';
+    if (waitTime >= 15) return 'red';
+    return 'black';
   };
 
   useEffect(() => {
     if (!mapContainer.current || !apiKey) return;
 
-    const bounds: [number, number, number, number] = [-178.00, 0.00, -49.00, 70.00];
+    const contCenter: [number, number] = [-98.5795, 39.8283];
+    const bounds: [number, number, number, number] = [contCenter[0]-100, contCenter[1]-50, contCenter[0]+100, contCenter[1]+30];
 
     const map = new maplibregl.Map({
       container: mapContainer.current,
       style: `https://api.maptiler.com/maps/bright/style.json?key=${apiKey}`,
-      center: [-98.5795, 39.8283],
-      zoom: 4,
+      center: contCenter,
+      zoom: 3.5,
       maxBounds: bounds,
     });
 
@@ -42,8 +43,8 @@ const MapComponent: React.FC<MapComponentProps> = ({ locations }) => {
       locations.forEach((loc) => {
         const popup = new maplibregl.Popup({offset: 25}).setText('Time: ' + loc.estimatedWaitTime);
         const el = document.createElement('div');
-        el.style.width = '1vh';
-        el.style.height = '1vh';
+        el.style.width = '0.5vh';
+        el.style.height = '0.5vh';
         el.style.borderRadius = '50%';
         el.style.backgroundColor = getMarkerColor(loc.estimatedWaitTime);
 
@@ -53,6 +54,16 @@ const MapComponent: React.FC<MapComponentProps> = ({ locations }) => {
           .addTo(map);
       });
     }
+
+    // Example scale on zoom, not currently functional with custom marker
+    // const marker2 = new maplibregl.Marker()
+    //   .setLngLat([-98.5795, 39.8283])
+    //   .addTo(map);
+    // map.on('zoom', () => {
+    //   const scale = 1 + (map.getZoom() - 4) * 0.4;
+    //   const svgElement = marker2.getElement().children[0] as HTMLElement;
+    //   svgElement.style.transform = `scale(${scale})`;
+    // });
 
     // Cleanup map when component unmounts
     return () => map.remove();
