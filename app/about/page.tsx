@@ -43,7 +43,7 @@ export default function AboutPage() {
               GitHub
             </a>
         </p>
-        <Link href="/pages/feedback">
+        <Link href="/feedback">
           <button type="button">
               Feedback
           </button>
