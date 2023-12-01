@@ -26,6 +26,10 @@ p {
   font-size: 1.3em;
 }
 
+ul li {
+  margin-bottom: 10px;
+}
+
 .content {
   width: 75%;
 }
@@ -82,4 +86,44 @@ p {
 
 .markdown-body a:hover {
   text-decoration: underline;
+}
+
+.videoComponent {
+  width: 100%;
+  height: auto; 
+}
+
+
+
+
+
+
+
+
+
+
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.leftSection, .rightSection {
+  flex: 1;
+  padding: 10px;
+}
+
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .rightSection {
+    border-left: none;
+    padding-top: 20px;
+    border-top: 2px solid var(--primary-color);
+  }
 }

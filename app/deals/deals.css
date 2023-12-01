@@ -1,0 +1,43 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background-color: #d60000;
+    color: #ffffff;
+}
+
+th {
+    font-size: 1.1em;
+    text-align: left;
+    padding: 10px;
+}
+
+td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+.order-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.order-link p {
+    font-size: 1em;
+}
+
+.order-link a {
+    color: #d60000;
+    text-decoration: none;
+}
+
+.order-link a:hover {
+    text-decoration: underline;
+}
