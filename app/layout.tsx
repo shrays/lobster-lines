@@ -11,16 +11,11 @@ export default function RootLayout(props: React.PropsWithChildren) {
         {/* <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' /> */}
         <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
         <link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" />
-        {/* <link rel="preload" href="https://www.lobsterlines.com/_next/static/css/eb22dcd54d4ce9f0.css" as="style" /> */}
+        <meta name="description" content="Lobster Lines: Discover real-time wait times at your nearest Red Lobster restaurants. Fast, accurate, and user-friendly, with interactive maps and up-to-date information." />
       </head>
       <body>
         <section className={styles.container}>
-          <Nav />
-
-          {/* <header className={styles.header}>
-            <img src="/logo.svg" className={styles.logo} alt="logo" />
-          </header> */}
-          
+          <Nav />          
           <main className={styles.main}>
             {props.children}
           </main>
