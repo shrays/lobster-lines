@@ -17,7 +17,7 @@ export const Nav = () => {
       </Link>
 
       {/* Hamburger Icon */}
-      <div className={styles.hamburger} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+      <div className={`${styles.hamburger} ${isMenuOpen ? styles.hamburgerX : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
         <span className={styles.bar}></span>
         <span className={styles.bar}></span>
         <span className={styles.bar}></span>

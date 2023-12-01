@@ -46,7 +46,21 @@
   height: 3px;
   width: 100%;
   background-color: var(--primary-text);
+  transition: all 0.3s ease;
 }
+
+.hamburgerX .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+  
+.hamburgerX .bar:nth-child(2) {
+    opacity: 0;
+}
+  
+.hamburgerX .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -8px);
+}
+  
 
 @media screen and (max-width: 1000px) {
     .nav {
