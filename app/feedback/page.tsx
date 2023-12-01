@@ -39,7 +39,7 @@ export default function FeedbackPage() {
       <p className='description'>
         Have a question? Suggestion? Bug Report? Something Else?<br />Let me know and I'll try to respond (if you leave your email).
       </p>
-      <form id="feedback" onSubmit={handleSubmit}>
+      <form id="feedback" onSubmit={handleSubmit} action="#">
         <input className="input_field" type="text" placeholder="Name" id="fname" />
         <input className="input_field" type="email" placeholder="Email Address" id="email" />
         <select className="input_field" id="responsetype" onChange={handleSelectChange} style={{ color: selectColor }}>

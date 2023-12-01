@@ -42,6 +42,8 @@ export default function AboutPage() {
             >
               GitHub
             </a>
+            . Or <a className="link" href="mailto:shrayswarup.com">email me</a>!
+
         </p>
         <Link href="/feedback">
           <button type="button">

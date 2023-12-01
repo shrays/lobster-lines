@@ -43,8 +43,8 @@ const MapComponent: React.FC<MapComponentProps> = ({ locations }) => {
       locations.forEach((loc) => {
         const popup = new maplibregl.Popup({offset: 25}).setText('Time: ' + loc.estimatedWaitTime);
         const el = document.createElement('div');
-        el.style.width = '0.5vh';
-        el.style.height = '0.5vh';
+        el.style.width = '0.9vh';
+        el.style.height = '0.9vh';
         el.style.borderRadius = '50%';
         el.style.backgroundColor = getMarkerColor(loc.estimatedWaitTime);
 
