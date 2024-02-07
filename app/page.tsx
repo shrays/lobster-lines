@@ -29,6 +29,9 @@ export default function IndexPage() {
   return (
     <>
       <MapComponent locations={locationData} />
+      <div className='content'>
+        {/* <h2 style={{ textAlign: "center" }}>Welcome to Lobster Lines!</h2> */}
+      </div>
     </>
   )
 }
