@@ -1,33 +1,43 @@
-# LobsterLines
+# LobsterLines - Real-Time Wait Times at Red Lobster Locations
 
-npx create-next-app --example with-redux
+## Project Description
+Lobster Lines is a dynamic web application that provides real-time wait times at various Red Lobster restaurants. This application is built using React, NextJS, and leverages MapTiler and OpenStreetMaps for interactive mapping features. Backend functionality is handled using Vercel Serverless Functions, interfacing with the Red Lobster API to fetch current wait times.
 
-## Redux Toolkit TypeScript Example
+## Prerequisites
+Before setting up the project, ensure you have the following:
+- Node.js installed on your system.
+- A MapTiler API key (you will need to sign up at [MapTiler](https://www.maptiler.com/) to obtain your own key).
 
-This example shows how to integrate Next.js with [Redux Toolkit](https://redux-toolkit.js.org).
+## Setup
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/your-username/lobster-lines.git
+   cd lobster-lines
+2. **Environment Variables:**
+Create a `.env.local` file in the root of your project and add the following line:
+   ```bash
+   NEXT_PUBLIC_MAPTILER_KEY=<Your_MapTiler_API_Key>
+4. **Install Dependencies:**
+   ```bash
+   npm install
+## Running the Application
 
-The **Redux Toolkit** is a standardized way to write Redux logic (create actions and reducers, setup the store with some default middlewares like redux devtools extension). This example demonstrates each of these features with Next.js
+-   **Development Mode:** Run the following command to start the development server:
+    `npm run dev` 
+    The application will be available at `http://localhost:3000`.
+-   **Production Build:** To create a production build, use:
+    `npm run build` 
+    Then, to start the production server:
+    `npm run start` 
 
-## Deploy your own
+## Contributing
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+Contributions to Lobster Lines are welcome. Please ensure to follow the established code style and conduct thorough testing before submitting any pull requests.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-redux&project-name=with-redux&repository-name=with-redux)
+## License
 
-## How to use
+This project is licensed under the [Apache License 2.0](https://chat.openai.com/c/LICENSE.md).
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+----------
 
-```bash
-npx create-next-app --example with-redux with-redux-app
-```
-
-```bash
-yarn create next-app --example with-redux with-redux-app
-```
-
-```bash
-pnpm create next-app --example with-redux with-redux-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Happy Dining! 🦞
