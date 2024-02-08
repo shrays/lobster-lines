@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 function parseWaitTime(waitTime: string | null | undefined): number {
-  // Check if waitTime is undefined or null and provide a default empty string
   waitTime = waitTime ?? '';
 
   if (waitTime === 'Now Seating') {
@@ -17,8 +16,15 @@ function parseWaitTime(waitTime: string | null | undefined): number {
 
 export async function GET(req: NextRequest) {
   const url = 'https://www.redlobster.com/api/location/getlocations?latitude=0&longitude=0&radius=1000000&limit=10000';
-  const externalResponse = await fetch(url);
+
+  // Mimick user-agent
+  const headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36'
+  };
+
+  const externalResponse = await fetch(url, { headers });
   const data = await externalResponse.json();
+  // console.log(JSON.stringify(data.locations, null, 2));
 
   const simplifiedData = data.locations.map((item: any) => ({
     latitude: item.location.latitude,
