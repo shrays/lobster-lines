@@ -36,7 +36,7 @@ Contributions to Lobster Lines are welcome. Please ensure to follow the establis
 
 ## License
 
-This project is licensed under the [Apache License 2.0](https://chat.openai.com/c/LICENSE.md).
+This project is licensed under the Apache License 2.0.
 
 ----------
 
