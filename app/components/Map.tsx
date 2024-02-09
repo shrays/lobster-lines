@@ -41,18 +41,39 @@ const MapComponent: React.FC<MapComponentProps> = ({ locations }) => {
 
     // Check if locations is not null before creating markers
     if (locations) {
+      // sort locations from lowest to highest longitude. (loc.longitude)
+
       locations.forEach((loc) => {
         const popup = new maplibregl.Popup({offset: 25}).setText('Time: ' + loc.estimatedWaitTime);
+        const parent = document.createElement('div')
         const el = document.createElement('div');
+        parent.appendChild(el);
         el.style.width = '0.9vh';
         el.style.height = '0.9vh';
         el.style.borderRadius = '50%';
         el.style.backgroundColor = getMarkerColor(loc.estimatedWaitTime);
 
-        new maplibregl.Marker({ element: el })
+        const marker = new maplibregl.Marker({ element: parent })
           .setLngLat([loc.longitude, loc.latitude])
           .setPopup(popup)
           .addTo(map);
+        map.on('zoom', () => {
+          const scale = 1 + (map.getZoom() - 4) * 0.4;
+          const svgElement = marker.getElement().children[0] as HTMLElement;
+          svgElement.style.transform = `scale(${scale})`;
+        });
+
+        // const marker = new maplibregl.Marker({
+        //   color: getMarkerColor(loc.estimatedWaitTime)
+        // }).setLngLat([loc.longitude, loc.latitude])
+        // .setPopup(popup)
+        // .addTo(map)
+        // map.on('zoom', () => {
+        //   const scale = 1 + (map.getZoom() - 4) * 0.4;
+        //   const svgElement = marker.getElement().children[0] as HTMLElement;
+        //   svgElement.style.transform = `scale(${scale})`;
+        // });
+
       });
     }
 
