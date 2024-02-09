@@ -7,6 +7,7 @@ type Location = {
   latitude: number;
   longitude: number;
   estimatedWaitTime: number;
+  // info: string;
 };
 
 export default function IndexPage() {
@@ -17,7 +18,7 @@ export default function IndexPage() {
       try {
         const response = await fetch('/api/lobster-locations');
         const json = await response.json();
-        setLocationData(json.map((loc: any) => ({ latitude: loc.latitude, longitude: loc.longitude, estimatedWaitTime: loc.estimatedWaitTime })));
+        setLocationData(json.map((loc: any) => ({ latitude: loc.latitude, longitude: loc.longitude, estimatedWaitTime: loc.estimatedWaitTime, info: loc.info })));
       } catch (error) {
         console.error('Error fetching data: ', error);
       }
