@@ -4,14 +4,14 @@ import Link from 'next/link';
 export default function AboutPage() {
   return (
     <>
-      <h1>About me: Shray Swarup</h1>
+      <h1>About me</h1>
       <div className="content">
-        <figure className="photo-container">
-          <img className="photo" src="/profilephoto.webp" alt="Description of the photo" />
-          <figcaption>Deloitte Consulting, 2023</figcaption>
-        </figure>
+        {/* <figure className="photo-container">
+          <img className="photo" src="/_.webp" alt="Description" />
+          <figcaption>Caption</figcaption>
+        </figure> */}
         <p>
-          Hello! I'm Shray, a senior at Barrett, ASU majoring in CS and minoring in business. I am interested in using my software development skills and ML/Data Engineering background to address real-world problems. I have experience in full-stack web development, data handling, and prediction modeling. Currently working on a web project calculating/visualizing a cost-of-living index using open company APIs. 
+          Hey! I’m Shray, a recent CS grad with a background in ML/data engineering, data visualization, and web development! I have experience working with and leading software development teams in full-stack projects involving prediction modeling, model bias detection, and more! Currently working on a web project calculating/visualizing a cost-of-living index based on region restaurant pricing.
         </p>
         <br />
         <p className='refer'>
