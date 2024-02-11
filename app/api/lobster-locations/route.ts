@@ -12,7 +12,7 @@ type Location = {
   zip: string,
   phone: string,
   webURL: string,
-  lastUpdated: number,
+  // lastUpdated: number,
 }
 
 var canadaTimezoneMapping : Record<string, string[]> = { // Guesses based on province. Excluding X0C, X0A, X0B
@@ -81,14 +81,9 @@ function isOpen(zip: string, open: string, close: string): boolean {
 
 function parseUpdate(waitListRefreshedOn: string): number {
   const waitListDate = new Date(waitListRefreshedOn);
-  // Get the current date and time
   const currentDate = new Date();
-  // Calculate the difference in milliseconds
   const diffInMilliseconds = currentDate.getTime() - waitListDate.getTime();
-  // Convert milliseconds to minutes (1 minute = 60000 milliseconds)
   const diffInMinutes = diffInMilliseconds / 60000;
-  // Return the difference in minutes
-  // Using Math.abs to ensure a positive value regardless of the order of dates
   return Math.abs(diffInMinutes);
 }
 
@@ -121,10 +116,10 @@ export async function GET(req: NextRequest) {
     zip: item.location.zip,
     phone: item.location.phone,
     webURL: item.location.localPageURL,
-    lastUpdated: parseUpdate(item.location.waitListRefreshedOn),
-    // info: 'Val: ' + isOpen(item.location.zip, item.location.hours[dayOfWeek].open, item.location.hours[dayOfWeek].close, item.location.isTemporarilyClosed)
+    // lastUpdated: parseUpdate(item.location.waitListRefreshedOn),
   }));
 
+  const lastUpdate = parseUpdate(data.locations[0].location.waitListRefreshedOn);
   const totalStores = simplifiedData.length;
   const openStores = simplifiedData.filter((item: Location) => item.estimatedWaitTime !== -1 && item.estimatedWaitTime !== -2);
   const storesOpen = openStores.length;
@@ -134,6 +129,7 @@ export async function GET(req: NextRequest) {
   const averageWaitTime = storesOpen > 0 ? totalWaitTimeForOpenStores / storesOpen : 0;
 
   const summary = {
+    lastUpdate,
     totalStores,
     storesOpen,
     storesWithWaitlist,

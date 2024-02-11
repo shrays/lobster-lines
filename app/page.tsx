@@ -13,10 +13,11 @@ type Location = {
   zip: string,
   phone: string,
   webURL: string,
-  lastUpdated: number,
+  // lastUpdated: number,
 };
 
 type Summary = {
+  lastUpdate: number;
   totalStores: number;
   storesOpen: number;
   storesWithWaitlist: number;
@@ -50,7 +51,9 @@ export default function IndexPage() {
     <>
       <MapComponent locations={locationData} />
       {summaryData && <HorizontalScrollCards summaryData={summaryData} />}
-      {/* <div className='content'></div> */}
+      <div className='middle-text'>
+        {summaryData && `${summaryData.lastUpdate.toFixed(0)} minutes since Red Lobster updated their online wait times.`}
+      </div>
     </>
   )
 }

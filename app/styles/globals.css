@@ -34,6 +34,11 @@ ul li {
   width: 75%;
 }
 
+.middle-text {
+  padding: 20px;
+  text-align: center;
+}
+
 * {
   white-space: pre-wrap;
 }
@@ -86,44 +91,4 @@ ul li {
 
 .markdown-body a:hover {
   text-decoration: underline;
-}
-
-.videoComponent {
-  width: 100%;
-  height: auto; 
-}
-
-
-
-
-
-
-
-
-
-
-
-.container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.leftSection, .rightSection {
-  flex: 1;
-  padding: 10px;
-}
-
-@media (max-width: 800px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .rightSection {
-    border-left: none;
-    padding-top: 20px;
-    border-top: 2px solid var(--primary-color);
-  }
 }

@@ -11,7 +11,7 @@ type Location = {
   zip: string,
   phone: string,
   webURL: string,
-  lastUpdated: number,
+  // lastUpdated: number,
 };
 
 type MapComponentProps = {
@@ -51,7 +51,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ locations }) => {
     if (locations) {
       locations.forEach((loc) => {
         var directions = "https://www.google.com/maps/search/?api=1&query=Red+Lobster+" + (loc.address + " " + loc.zip + " " + loc.city).replace(/ /g, "+");
-        const popupContent = `<strong>${loc.address}</strong><br>${loc.city}<br>${loc.phone}<br><a href="${directions}" target="_blank" rel="noopener noreferrer" style="color: blue; text-decoration: underline;">Directions</a> | <a href="https://www.redlobster.com/seafood-restaurants/locations/${loc.webURL}" target="_blank" rel="noopener noreferrer" style="color: blue; text-decoration: underline;">Website</a><br>Updated ${Math.floor(loc.lastUpdated)} minutes ago`;
+        const popupContent = `<strong>${loc.address}</strong><br>${loc.city}<br>${loc.phone}<br><a href="${directions}" target="_blank" rel="noopener noreferrer" style="color: blue; text-decoration: underline;">Directions</a> | <a href="https://www.redlobster.com/seafood-restaurants/locations/${loc.webURL}" target="_blank" rel="noopener noreferrer" style="color: blue; text-decoration: underline;">Website</a><br>Wait: <strong>${loc.estimatedWaitTime} minutes</strong>`;
         const popup = new maplibregl.Popup({offset: 5}).setHTML(popupContent);
 
         const elParent = document.createElement('div')
