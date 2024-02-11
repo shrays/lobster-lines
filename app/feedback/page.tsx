@@ -1,6 +1,6 @@
 'use client'
 
-import './feedback.css'
+import './feedback.css';
 import React, { useState } from 'react';
 
 export default function FeedbackPage() {
@@ -17,41 +17,25 @@ export default function FeedbackPage() {
     }
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    const feedbackElement = document.getElementById('yourfeedback');
-    const feedbackValue = feedbackElement ? (feedbackElement as HTMLInputElement).value : '';
-
-  
-    if (!isValidForm || !feedbackValue) {
-      event.preventDefault();
-  
-      if (!feedbackValue) {
-        alert("Please fill in your feedback before submitting.");
-      } else if (!isValidForm) {
-        alert("Please select a valid option before submitting.");
-      }
-    }
-  };
-
   return (
     <>
       <h1>Feedback Form</h1>
       <p className='description'>
         Have a question? Suggestion? Bug Report? Something Else?<br />Let me know and I'll try to respond (if you leave your email).
       </p>
-      <form id="feedback" onSubmit={handleSubmit}>
-        <input className="input_field" type="text" placeholder="Name" id="fname" />
-        <input className="input_field" type="email" placeholder="Email Address" id="email" />
-        <select className="input_field" id="responsetype" onChange={handleSelectChange} style={{ color: selectColor }}>
-          <option disabled selected value="">Select an Option*</option>
+      <form id="feedback-form" action="https://getform.io/f/adaafac6-fa33-45b3-abd7-208f49690c98" method="POST">
+        <input className="input_field" type="text" placeholder="Name" name="name" id="fname" />
+        <input className="input_field" type="email" placeholder="Email Address" name="email" id="email" />
+        <select className="input_field" name="responsetype" id="responsetype" onChange={handleSelectChange} style={{ color: selectColor }} defaultValue="">
+          <option disabled value="">Select an Option*</option>
           <option value="suggestion">Suggestion</option>
           <option value="bug">Bug Report</option>
           <option value="question">Question</option>
           <option value="feedback">Other</option>
         </select>
-        <textarea className="input_field" placeholder="Your Feedback*" id="yourfeedback" required></textarea>
-        <input className="btn" type="submit" disabled={!isValidForm} />
-    </form>
+        <textarea className="input_field" placeholder="Your Feedback*" name="feedback" id="yourfeedback" required></textarea>
+        <input className="btn" type="submit" value="Submit" disabled={!isValidForm} />
+      </form>
     </>
-  )
+  );
 }
