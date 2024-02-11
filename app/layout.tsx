@@ -23,7 +23,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
           <footer className={styles.footer}>
             <span>Copyright © 2023 <span className={styles.highlighted}>Lobster Lines</span>. All Rights Reserved</span>
             <div className={styles.disclaimer}>
-                Disclaimer: This site is not affiliated with or endorsed by Red Lobster.<br />All trademarks belong to their respective owners. Wait times are for<br />reference only; please verify with individual locations.
+                Disclaimer: This site is not affiliated with or endorsed by Red Lobster. All trademarks belong to their respective owners. Wait times are for reference only; please verify with individual locations.
             </div>
           </footer>
         </section>
