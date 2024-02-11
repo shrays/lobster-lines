@@ -7,6 +7,12 @@ type Location = {
   latitude: number;
   longitude: number;
   estimatedWaitTime: number;
+  address: string,
+  city: string,
+  zip: string,
+  phone: string,
+  webURL: string,
+  lastUpdated: number,
 }
 
 var canadaTimezoneMapping : Record<string, string[]> = { // Guesses based on province. Excluding X0C, X0A, X0B
@@ -70,9 +76,22 @@ function isOpen(zip: string, open: string, close: string): boolean {
   const closeTime24 = convertTo24HourFormat(close);
 
   const isOpenNow = currentTime >= openTime24 && currentTime <= closeTime24;
-  // var info = zip  + "\n" + isOpenNow + "\n" + currentTime + "\n" + openTime24 + "\n" + closeTime24 + "\n";
   return isOpenNow ? true : false;
 }
+
+function parseUpdate(waitListRefreshedOn: string): number {
+  const waitListDate = new Date(waitListRefreshedOn);
+  // Get the current date and time
+  const currentDate = new Date();
+  // Calculate the difference in milliseconds
+  const diffInMilliseconds = currentDate.getTime() - waitListDate.getTime();
+  // Convert milliseconds to minutes (1 minute = 60000 milliseconds)
+  const diffInMinutes = diffInMilliseconds / 60000;
+  // Return the difference in minutes
+  // Using Math.abs to ensure a positive value regardless of the order of dates
+  return Math.abs(diffInMinutes);
+}
+
 
 export async function GET(req: NextRequest) {
   const url = 'https://www.redlobster.com/api/location/getlocations?latitude=39&longitude=-98&radius=4000&limit=1000';
@@ -97,6 +116,12 @@ export async function GET(req: NextRequest) {
       item.location.hours[dayOfWeek].open, 
       item.location.hours[dayOfWeek].close, 
       item.location.isTemporarilyClosed),
+    address: item.location.address1,
+    city: item.location.city,
+    zip: item.location.zip,
+    phone: item.location.phone,
+    webURL: item.location.localPageURL,
+    lastUpdated: parseUpdate(item.location.waitListRefreshedOn),
     // info: 'Val: ' + isOpen(item.location.zip, item.location.hours[dayOfWeek].open, item.location.hours[dayOfWeek].close, item.location.isTemporarilyClosed)
   }));
 

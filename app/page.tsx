@@ -8,7 +8,12 @@ type Location = {
   latitude: number;
   longitude: number;
   estimatedWaitTime: number;
-  // info: string;
+  address: string,
+  city: string,
+  zip: string,
+  phone: string,
+  webURL: string,
+  lastUpdated: number,
 };
 
 type Summary = {
@@ -45,10 +50,7 @@ export default function IndexPage() {
     <>
       <MapComponent locations={locationData} />
       {summaryData && <HorizontalScrollCards summaryData={summaryData} />}
-
-      <div className='content'>
-        {/* <h2 style={{ textAlign: "center" }}>Welcome to Lobster Lines!</h2> */}
-      </div>
+      {/* <div className='content'></div> */}
     </>
   )
 }
