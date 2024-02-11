@@ -3,6 +3,12 @@ import { NextRequest, NextResponse } from 'next/server';
 var zipcode_to_timezone = require( 'zipcode-to-timezone' );
 var { formatInTimeZone } = require('date-fns-tz');
 
+type Location = {
+  latitude: number;
+  longitude: number;
+  estimatedWaitTime: number;
+}
+
 var canadaTimezoneMapping : Record<string, string[]> = { // Guesses based on province. Excluding X0C, X0A, X0B
   'America/Chicago': ['S', 'R'],
   'America/New_York': ['J', 'G', 'H', 'L', 'K', 'M', 'N', 'P'],
@@ -13,9 +19,10 @@ var canadaTimezoneMapping : Record<string, string[]> = { // Guesses based on pro
 };
 
 function parseWaitTime(waitTime: string | null | undefined, zip: string, open: string, close: string, temporarilyClosed: boolean): number {
+  if(temporarilyClosed == true) { return -2 }
   waitTime = waitTime ?? '';
 
-  if (isOpen(zip, open, close, temporarilyClosed) === false) {
+  if (isOpen(zip, open, close) === false) {
     return -1;
   } else if (waitTime === '') {
     return 0;
@@ -26,9 +33,7 @@ function parseWaitTime(waitTime: string | null | undefined, zip: string, open: s
   }
 }
 
-function isOpen(zip: string, open: string, close: string, temporarilyClosed: boolean): boolean {
-  if(temporarilyClosed == true) { return false}
-
+function isOpen(zip: string, open: string, close: string): boolean {
   zip = zip.trim().toUpperCase();
   var tz = '';
 
@@ -79,7 +84,6 @@ export async function GET(req: NextRequest) {
 
   const externalResponse = await fetch(url, { headers });
   const data = await externalResponse.json();
-  // console.log(JSON.stringify(data.locations, null, 2));
 
   const today = new Date();
   const dayOfWeek = today.getDay();
@@ -96,7 +100,27 @@ export async function GET(req: NextRequest) {
     // info: 'Val: ' + isOpen(item.location.zip, item.location.hours[dayOfWeek].open, item.location.hours[dayOfWeek].close, item.location.isTemporarilyClosed)
   }));
 
-  return new NextResponse(JSON.stringify(simplifiedData), {
+  const totalStores = simplifiedData.length;
+  const openStores = simplifiedData.filter((item: Location) => item.estimatedWaitTime !== -1 && item.estimatedWaitTime !== -2);
+  const storesOpen = openStores.length;
+  const storesWithWaitlist = openStores.filter((item: Location) => item.estimatedWaitTime > 0).length;
+  const storesTemporarilyClosed = simplifiedData.filter((item: Location) => item.estimatedWaitTime === -2).length;
+  const totalWaitTimeForOpenStores = openStores.reduce((acc: number, item: Location) => acc + item.estimatedWaitTime, 0);
+  const averageWaitTime = storesOpen > 0 ? totalWaitTimeForOpenStores / storesOpen : 0;
+
+  const summary = {
+    totalStores,
+    storesOpen,
+    storesWithWaitlist,
+    averageWaitTime: averageWaitTime.toFixed(2),
+    storesTemporarilyClosed,
+  };
+  const responsePayload = {
+    summary,
+    locations: simplifiedData,
+  };
+
+  return new NextResponse(JSON.stringify(responsePayload), {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
