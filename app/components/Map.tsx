@@ -88,7 +88,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ locations }) => {
       ref={mapContainer}
       style={{
         width: '100%',
-        height: '60vh',
+        height: '70vh',
         position: 'relative',
       }}
     />
