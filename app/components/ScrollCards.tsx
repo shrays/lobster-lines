@@ -16,10 +16,10 @@ interface HorizontalScrollCardsProps {
 
 const HorizontalScrollCards: React.FC<HorizontalScrollCardsProps> = ({ summaryData }) => {
   const items = [
-    [`${summaryData.totalStores}`, 'Stores'],
+    [`${summaryData.totalStores}`, 'Total Stores'],
     [`${summaryData.storesOpen}`, 'Stores Open'],
     [`${summaryData.storesWithWaitlist}`, 'Waitlists'],
-    [`${summaryData.averageWaitTime}`, 'Average Wait'],
+    [`${summaryData.averageWaitTime}`, 'Minute Average Wait'],
     [`${summaryData.storesTemporarilyClosed}`, 'Stores Temporarily Closed']
   ];
 
