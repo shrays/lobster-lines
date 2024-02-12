@@ -1,12 +1,18 @@
 'use client'
 import React, { useEffect, useRef } from 'react';
 import maplibregl from 'maplibre-gl';
+import Legend from './Legend';
 
 type Location = {
   latitude: number;
   longitude: number;
   estimatedWaitTime: number;
-  // info: string;
+  address: string,
+  city: string,
+  zip: string,
+  phone: string,
+  webURL: string,
+  // lastUpdated: number,
 };
 
 type MapComponentProps = {
@@ -18,7 +24,8 @@ const MapComponent: React.FC<MapComponentProps> = ({ locations }) => {
   const apiKey = process.env.NEXT_PUBLIC_MAPTILER_KEY;
 
   const getMarkerColor = (waitTime: number) => {
-    if (waitTime === -1) return 'gray';
+    if (waitTime === -2) return 'gray';
+    if (waitTime === -1 ) return 'black';
     if (waitTime === 0) return 'green';
     if (waitTime >= 5 && waitTime <= 10) return 'orange';
     if (waitTime >= 15) return 'red';
@@ -35,57 +42,46 @@ const MapComponent: React.FC<MapComponentProps> = ({ locations }) => {
       container: mapContainer.current,
       style: `https://api.maptiler.com/maps/bright/style.json?key=${apiKey}`,
       center: contCenter,
-      zoom: 3.5,
+      zoom: 3.7,
       maxBounds: bounds,
     });
+    map.dragRotate.disable();
+    map.touchZoomRotate.disableRotation();
 
     // Check if locations is not null before creating markers
     if (locations) {
-      // sort locations from lowest to highest longitude. (loc.longitude)
-
       locations.forEach((loc) => {
-        const popup = new maplibregl.Popup({offset: 25}).setText('Time: ' + loc.estimatedWaitTime);
-        const parent = document.createElement('div')
+        var directions = "https://www.google.com/maps/search/?api=1&query=Red+Lobster+" + (loc.address + " " + loc.zip + " " + loc.city).replace(/ /g, "+");
+        var wait = loc.estimatedWaitTime === -1 ? '[Closed]' :
+          loc.estimatedWaitTime === -2 ? '[Temporarily Closed]' :
+          `${loc.estimatedWaitTime} minutes`;
+        const popupContent = `<strong>${loc.address}</strong><br>${loc.city}<br>${loc.phone}<br><a href="${directions}" target="_blank" rel="noopener noreferrer" style="color: blue; text-decoration: underline;">Directions</a> | <a href="https://www.redlobster.com/seafood-restaurants/locations/${loc.webURL}" target="_blank" rel="noopener noreferrer" style="color: blue; text-decoration: underline;">Website</a><br>Wait: <strong>${wait}</strong>`;
+        const popup = new maplibregl.Popup({offset: 5}).setHTML(popupContent);
+
+        const elParent = document.createElement('div')
         const el = document.createElement('div');
-        parent.appendChild(el);
-        el.style.width = '0.9vh';
-        el.style.height = '0.9vh';
+        elParent.appendChild(el);
+        el.style.width = '0.5vh';
+        el.style.height = '0.5vh';
         el.style.borderRadius = '50%';
         el.style.backgroundColor = getMarkerColor(loc.estimatedWaitTime);
 
-        const marker = new maplibregl.Marker({ element: parent })
+        const marker = new maplibregl.Marker({ element: elParent })
           .setLngLat([loc.longitude, loc.latitude])
           .setPopup(popup)
           .addTo(map);
         map.on('zoom', () => {
-          const scale = 1 + (map.getZoom() - 4) * 0.4;
+          const minScale = 1;
+          const maxScale = 5;
+          
+          let scale = 1 + (map.getZoom() - 3.7) * 0.6;
+          scale = Math.max(minScale, Math.min(scale, maxScale));
+
           const svgElement = marker.getElement().children[0] as HTMLElement;
           svgElement.style.transform = `scale(${scale})`;
         });
-
-        // const marker = new maplibregl.Marker({
-        //   color: getMarkerColor(loc.estimatedWaitTime)
-        // }).setLngLat([loc.longitude, loc.latitude])
-        // .setPopup(popup)
-        // .addTo(map)
-        // map.on('zoom', () => {
-        //   const scale = 1 + (map.getZoom() - 4) * 0.4;
-        //   const svgElement = marker.getElement().children[0] as HTMLElement;
-        //   svgElement.style.transform = `scale(${scale})`;
-        // });
-
       });
     }
-
-    // Example scale on zoom, not currently functional with custom marker
-    // const marker2 = new maplibregl.Marker()
-    //   .setLngLat([-98.5795, 39.8283])
-    //   .addTo(map);
-    // map.on('zoom', () => {
-    //   const scale = 1 + (map.getZoom() - 4) * 0.4;
-    //   const svgElement = marker2.getElement().children[0] as HTMLElement;
-    //   svgElement.style.transform = `scale(${scale})`;
-    // });
 
     // Cleanup map when component unmounts
     return () => map.remove();
@@ -96,10 +92,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ locations }) => {
       ref={mapContainer}
       style={{
         width: '100%',
-        height: '60vh',
+        height: '70vh',
         position: 'relative',
-      }}
-    />
+    }}>
+        <Legend />
+    </div>
   );
 };
 

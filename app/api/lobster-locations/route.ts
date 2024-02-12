@@ -3,6 +3,18 @@ import { NextRequest, NextResponse } from 'next/server';
 var zipcode_to_timezone = require( 'zipcode-to-timezone' );
 var { formatInTimeZone } = require('date-fns-tz');
 
+type Location = {
+  latitude: number;
+  longitude: number;
+  estimatedWaitTime: number;
+  address: string,
+  city: string,
+  zip: string,
+  phone: string,
+  webURL: string,
+  // lastUpdated: number,
+}
+
 var canadaTimezoneMapping : Record<string, string[]> = { // Guesses based on province. Excluding X0C, X0A, X0B
   'America/Chicago': ['S', 'R'],
   'America/New_York': ['J', 'G', 'H', 'L', 'K', 'M', 'N', 'P'],
@@ -13,9 +25,10 @@ var canadaTimezoneMapping : Record<string, string[]> = { // Guesses based on pro
 };
 
 function parseWaitTime(waitTime: string | null | undefined, zip: string, open: string, close: string, temporarilyClosed: boolean): number {
+  if(temporarilyClosed == true) { return -2 }
   waitTime = waitTime ?? '';
 
-  if (isOpen(zip, open, close, temporarilyClosed) === false) {
+  if (isOpen(zip, open, close) === false) {
     return -1;
   } else if (waitTime === '') {
     return 0;
@@ -26,9 +39,7 @@ function parseWaitTime(waitTime: string | null | undefined, zip: string, open: s
   }
 }
 
-function isOpen(zip: string, open: string, close: string, temporarilyClosed: boolean): boolean {
-  if(temporarilyClosed == true) { return false}
-
+function isOpen(zip: string, open: string, close: string): boolean {
   zip = zip.trim().toUpperCase();
   var tz = '';
 
@@ -65,9 +76,17 @@ function isOpen(zip: string, open: string, close: string, temporarilyClosed: boo
   const closeTime24 = convertTo24HourFormat(close);
 
   const isOpenNow = currentTime >= openTime24 && currentTime <= closeTime24;
-  // var info = zip  + "\n" + isOpenNow + "\n" + currentTime + "\n" + openTime24 + "\n" + closeTime24 + "\n";
   return isOpenNow ? true : false;
 }
+
+function parseUpdate(waitListRefreshedOn: string): number {
+  const waitListDate = new Date(waitListRefreshedOn);
+  const currentDate = new Date();
+  const diffInMilliseconds = currentDate.getTime() - waitListDate.getTime();
+  const diffInMinutes = diffInMilliseconds / 60000;
+  return Math.abs(diffInMinutes);
+}
+
 
 export async function GET(req: NextRequest) {
   const url = 'https://www.redlobster.com/api/location/getlocations?latitude=39&longitude=-98&radius=4000&limit=1000';
@@ -79,7 +98,6 @@ export async function GET(req: NextRequest) {
 
   const externalResponse = await fetch(url, { headers });
   const data = await externalResponse.json();
-  // console.log(JSON.stringify(data.locations, null, 2));
 
   const today = new Date();
   const dayOfWeek = today.getDay();
@@ -93,13 +111,41 @@ export async function GET(req: NextRequest) {
       item.location.hours[dayOfWeek].open, 
       item.location.hours[dayOfWeek].close, 
       item.location.isTemporarilyClosed),
-    // info: 'Val: ' + isOpen(item.location.zip, item.location.hours[dayOfWeek].open, item.location.hours[dayOfWeek].close, item.location.isTemporarilyClosed)
+    address: item.location.address1,
+    city: item.location.city,
+    zip: item.location.zip,
+    phone: item.location.phone,
+    webURL: item.location.localPageURL,
+    // lastUpdated: parseUpdate(item.location.waitListRefreshedOn),
   }));
 
-  return new NextResponse(JSON.stringify(simplifiedData), {
+  const lastUpdate = parseUpdate(data.locations[0].location.waitListRefreshedOn);
+  const totalStores = simplifiedData.length;
+  const openStores = simplifiedData.filter((item: Location) => item.estimatedWaitTime !== -1 && item.estimatedWaitTime !== -2);
+  const storesOpen = openStores.length;
+  const storesWithWaitlist = openStores.filter((item: Location) => item.estimatedWaitTime > 0).length;
+  const storesTemporarilyClosed = simplifiedData.filter((item: Location) => item.estimatedWaitTime === -2).length;
+  const totalWaitTimeForOpenStores = openStores.reduce((acc: number, item: Location) => acc + item.estimatedWaitTime, 0);
+  const averageWaitTime = storesOpen > 0 ? totalWaitTimeForOpenStores / storesOpen : 0;
+
+  const summary = {
+    lastUpdate,
+    totalStores,
+    storesOpen,
+    storesWithWaitlist,
+    averageWaitTime: averageWaitTime.toFixed(2),
+    storesTemporarilyClosed,
+  };
+  const responsePayload = {
+    summary,
+    locations: simplifiedData,
+  };
+
+  return new NextResponse(JSON.stringify(responsePayload), {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
+      'Cache-Control': 'max-age=600',
     },
   });
 }

@@ -33,11 +33,11 @@ export const Nav = () => {
           HOME
         </Link>
         <Link
-          className={`${styles.link} ${pathname === '/peak-times' ? styles.active : ''}`}
-          href="/peak-times"
+          className={`${styles.link} ${pathname === '/trends' ? styles.active : ''}`}
+          href="/trends"
           onClick={() => setIsMenuOpen(false)}
         >
-          PEAK TIMES
+          TRENDS
         </Link>
         <Link
           className={`${styles.link} ${pathname === '/blog' ? styles.active : ''}`}

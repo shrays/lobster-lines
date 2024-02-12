@@ -1,0 +1,25 @@
+.legend {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1;
+    font-size: 1.2em;
+    font-family: sans-serif;
+}
+
+.legendItem {
+    display: flex;
+    align-items: center;
+}
+
+.legendKey {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
