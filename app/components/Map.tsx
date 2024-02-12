@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useRef } from 'react';
 import maplibregl from 'maplibre-gl';
+import Legend from './Legend';
 
 type Location = {
   latitude: number;
@@ -93,8 +94,9 @@ const MapComponent: React.FC<MapComponentProps> = ({ locations }) => {
         width: '100%',
         height: '70vh',
         position: 'relative',
-      }}
-    />
+    }}>
+        <Legend />
+    </div>
   );
 };
 
