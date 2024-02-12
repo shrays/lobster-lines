@@ -87,7 +87,7 @@ function parseUpdate(waitListRefreshedOn: string): number {
   return Math.abs(diffInMinutes);
 }
 
-
+export const dynamic = 'force-dynamic';
 export async function GET(req: NextRequest) {
   const url = 'https://www.redlobster.com/api/location/getlocations?latitude=39&longitude=-98&radius=4000&limit=1000';
 
@@ -145,7 +145,7 @@ export async function GET(req: NextRequest) {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'max-age=0',
+      'Cache-Control': 'no-cache',
     },
   });
 }
