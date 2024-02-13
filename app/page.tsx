@@ -28,19 +28,22 @@ type Summary = {
 export default function IndexPage() {
   const [locationData, setLocationData] = useState<Location[] | null>(null);
   const [summaryData, setSummaryData] = useState<Summary | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch('/api/lobster-locations');
         const json = await response.json();
       
         const { locations, summary } = json;
         setLocationData(json.locations);
         setSummaryData(json.summary);
-      
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching data: ', error);
+        setIsLoading(false);
       }
     };
 
@@ -49,11 +52,20 @@ export default function IndexPage() {
 
   return (
     <>
-      <MapComponent locations={locationData} />
-      {summaryData && <HorizontalScrollCards summaryData={summaryData} />}
-      <div className='middle-text'>
-        {summaryData && `${summaryData.lastUpdate.toFixed(0)} minutes since Red Lobster updated their online wait times.`}
-      </div>
+      {isLoading ? (
+        <>
+          <div className="loading-icon"></div>
+          <span className='loading-text'>Loading...</span>
+        </>
+      ) : (
+        <>
+          <MapComponent locations={locationData} />
+          {summaryData && <HorizontalScrollCards summaryData={summaryData} />}
+          <div className='middle-text'>
+            {summaryData && `${summaryData.lastUpdate.toFixed(0)} minutes since Red Lobster updated their online wait times.`}
+          </div>
+        </>
+      )}
     </>
   )
 }
