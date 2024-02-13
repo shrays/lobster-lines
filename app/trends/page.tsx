@@ -3,7 +3,7 @@ export default function TrendsPage() {
     <>
       <h1>[WIP] Trends</h1>
       <div className="content">
-        <p>
+        <p style={{ textAlign: 'center' }}>
           Tracking historical changes in restaurant count and wait times.
         </p>
       </div>

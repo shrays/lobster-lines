@@ -18,7 +18,7 @@ Map Controls - MapLibreGL, OpenMapTiler, Leaflet
 ## Challenges I Faced
 A difficulty in working with third party data is having to adapt to unannounced changes on their end. One instance of this was changes Red Lobster made to their API regarding wait times. The update they made, in addition to adding wait time descriptions on their map sidebar, was restricting access to their estimatedWaitTime JSON element (Only returning empty strings). I got around this by specifying a user-agent in the request heading.
 
-Dealing with API keys is a simple: don't let anyone else see them. Or thats what I thought going into adding the map. The service I used to fetch stylized map tiles, [MapTiler](https://www.maptiler.com/cloud/), displayed the map and with it, my private key. I spent a day trying to set up a routing layer and a proxy in order to hide it before I realized this was normal and I was meant to whitelist my domain name with my account. 💀 
+Dealing with private API keys is simple: keep them private. Or thats what I thought going into adding the map. The service I used to fetch stylized map tiles, [MapTiler](https://www.maptiler.com/cloud/), displayed the plain text key in the XHR requests. I ended up spending the better part of my day trying to set up routing layers, serverless functions, and proxies in order to hide the string before I realized this was normal behavior. MapTiler had a menu where I could whitelist specific domains. 
 
 ## Run it Yourself
 Check out the GitHub [README.md](https://github.com/shrays/lobster-lines) for information about running the project!
