@@ -4,8 +4,6 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useState, useEffect } from 'react';
 
-// import './blog.css';
-
 export default function BlogPage() {
   const [markdown, setMarkdown] = useState('');
 
