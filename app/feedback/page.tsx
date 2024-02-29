@@ -23,7 +23,7 @@ export default function FeedbackPage() {
       <p className='description'>
         Have a question? Suggestion? Bug Report? Something Else?<br />Let me know and I'll try to respond (if you leave your email).
       </p>
-      <form id="feedback-form" action="https://api.sheetmonkey.io/form/bRRHv8jJeLMYCfR6p8ZxVx" method="POST">
+      <form id="feedback-form" action="https://api.sheetmonkey.io/form/2G6YLnabhn8kxuWR7WJzrh" method="POST">
         <input className="input_field" type="text" placeholder="Name" name="name" id="fname" />
         <input className="input_field" type="email" placeholder="Email Address" name="email" id="email" />
         <select className="input_field" name="responsetype" id="responsetype" onChange={handleSelectChange} style={{ color: selectColor }} defaultValue="">
