@@ -12,7 +12,7 @@ type Location = {
   city: string,
   zip: string,
   phone: string,
-  webURL: string,
+  rlid: string,
   // lastUpdated: number,
 };
 

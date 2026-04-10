@@ -11,7 +11,7 @@ type Location = {
   city: string,
   zip: string,
   phone: string,
-  webURL: string,
+  rlid: string,
   // lastUpdated: number,
 };
 
@@ -55,7 +55,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ locations }) => {
         var wait = loc.estimatedWaitTime === -1 ? '[Closed]' :
           loc.estimatedWaitTime === -2 ? '[Temporarily Closed]' :
           `${loc.estimatedWaitTime} minutes`;
-        const popupContent = `<strong>${loc.address}</strong><br>${loc.city}<br>${loc.phone}<br><a href="${directions}" target="_blank" rel="noopener noreferrer" style="color: blue; text-decoration: underline;">Directions</a> | <a href="https://www.redlobster.com/seafood-restaurants/locations/${loc.webURL}" target="_blank" rel="noopener noreferrer" style="color: blue; text-decoration: underline;">Website</a><br>Wait: <strong>${wait}</strong>`;
+        const popupContent = `<strong>${loc.address}</strong><br>${loc.city}<br>${loc.phone}<br><a href="${directions}" target="_blank" rel="noopener noreferrer" style="color: blue; text-decoration: underline;">Directions</a> | <a href="https://www.redlobster.com/order?rlid=${loc.rlid}" target="_blank" rel="noopener noreferrer" style="color: blue; text-decoration: underline;">Website</a><br>Wait: <strong>${wait}</strong>`;
         const popup = new maplibregl.Popup({offset: 5}).setHTML(popupContent);
 
         const elParent = document.createElement('div')

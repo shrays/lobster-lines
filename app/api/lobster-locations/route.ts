@@ -11,7 +11,7 @@ type Location = {
   city: string;
   zip: string;
   phone: string;
-  webURL: string;
+  rlid: string;
 };
 
 type AvailabilitySlot = {
@@ -146,7 +146,6 @@ export async function GET(req: NextRequest) {
       city: loc.city,
       zip: loc.zip,
       phone: loc.phone,
-      webURL: loc.localPageURL,
       isOpen: open,
       isTemporarilyClosed: temporarilyClosed,
     };
@@ -183,7 +182,7 @@ export async function GET(req: NextRequest) {
       city: loc.city,
       zip: loc.zip,
       phone: loc.phone,
-      webURL: loc.webURL,
+      rlid: loc.rlid,
     };
   });
 
