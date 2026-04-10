@@ -17,7 +17,6 @@ type Location = {
 };
 
 type Summary = {
-  lastUpdate: number;
   totalStores: number;
   storesOpen: number;
   storesWithWaitlist: number;
@@ -62,7 +61,7 @@ export default function IndexPage() {
           <MapComponent locations={locationData} />
           {summaryData && <HorizontalScrollCards summaryData={summaryData} />}
           <div className='middle-text'>
-            {summaryData && `${summaryData.lastUpdate.toFixed(0)} minutes since Red Lobster updated their online wait times.`}
+            {summaryData && `Wait times based on real-time reservation availability.`}
           </div>
         </>
       )}
