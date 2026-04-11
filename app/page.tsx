@@ -12,12 +12,10 @@ type Location = {
   city: string,
   zip: string,
   phone: string,
-  webURL: string,
-  // lastUpdated: number,
+  rlid: string,
 };
 
 type Summary = {
-  lastUpdate: number;
   totalStores: number;
   storesOpen: number;
   storesWithWaitlist: number;
@@ -37,7 +35,6 @@ export default function IndexPage() {
         const response = await fetch('/api/lobster-locations');
         const json = await response.json();
       
-        const { locations, summary } = json;
         setLocationData(json.locations);
         setSummaryData(json.summary);
         setIsLoading(false);
@@ -52,20 +49,19 @@ export default function IndexPage() {
 
   return (
     <>
-      {isLoading ? (
+      {isLoading && (
         <>
           <div className="loading-icon"></div>
           <span className='loading-text'>Loading...</span>
         </>
-      ) : (
-        <>
-          <MapComponent locations={locationData} />
-          {summaryData && <HorizontalScrollCards summaryData={summaryData} />}
-          <div className='middle-text'>
-            {summaryData && `${summaryData.lastUpdate.toFixed(0)} minutes since Red Lobster updated their online wait times.`}
-          </div>
-        </>
       )}
+      <div style={{ display: isLoading ? 'none' : 'contents' }}>
+        <MapComponent locations={locationData} />
+        {summaryData && <HorizontalScrollCards summaryData={summaryData} />}
+        <div className='middle-text'>
+          {summaryData && `Wait times based on real-time reservation availability.`}
+        </div>
+      </div>
     </>
   )
 }

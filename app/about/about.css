@@ -1,66 +1,164 @@
-.content {
-    width: 75%;
+.about-page {
+    width: 90%;
+    max-width: 900px;
     margin: 0 auto;
+    padding: 2em 0 3em;
 }
 
-.photo-container {
-    float: right;
-    width: 40%;
-    max-width: 380px;
-    padding: 1%;
-    transform: scale(1.1);
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1em;
 }
 
-.photo {
-    width: 100%;
-    /* display: block; */
+/* Cards — inspired by the homepage metric squares */
+.about-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1.5em;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.photo-container figcaption {
-    text-align: center;
+.about-card h2 {
+    margin: 0 0 0.6em;
+    font-size: 1.3em;
+    color: var(--primary-color);
+}
+
+.about-card p {
     font-size: 1em;
-    margin-top: 8px;
+    line-height: 1.5;
+    margin: 0 0 0.5em;
+    color: #333;
 }
 
-.link:hover {
-    text-decoration: underline;
+/* Bio — spans full width on top */
+.about-bio {
+    grid-column: 1 / -1;
 }
 
-.link {
-    color: rgb(215, 58, 65);
-    white-space: nowrap;
+/* Links card */
+.about-links {
+    grid-column: 1 / -1;
 }
 
-.link.active {
-    text-decoration: underline;
+.link-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6em;
 }
 
-.refer {
-    text-align: center;
+.link-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0.8em 1em;
+    background-color: #f7f7f7;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, background-color 0.2s;
 }
 
-.content button {
-    position: fixed;
-    right: 0;
-    bottom: 25%;
-    transform: rotate(-90deg) translate(50%, -50%);
-    transform-origin: right;
+.link-item:hover {
+    border-color: var(--primary-color);
+    background-color: #fff;
+}
 
-    /* background-color: rgb(215, 58, 65); */
-    background-color: var(--primary-color);
-    color: #fff;
-    border: none;
-    border-radius: 0.2em;
-    font-size: calc(10px + 2vh);
-    padding: 0.2em;
-    font-family: arial;
+.link-label {
     font-weight: bold;
-    opacity: 0.9;
+    font-size: 0.95em;
 }
 
-.content button:hover {
-    background-color: var(--secondary-color);
-    transform: rotate(-90deg) translate(50%, -54%);
-    cursor: pointer;
+.link-url {
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 0.15em;
 }
 
+/* Blog section — full width card with inner link items */
+.about-blog-section {
+    grid-column: 1 / -1;
+}
+
+.blog-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6em;
+}
+
+.blog-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0.8em 1em;
+    background-color: #f7f7f7;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.blog-item:hover {
+    border-color: var(--primary-color);
+    background-color: #fff;
+}
+
+.blog-item-title {
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+.blog-item-desc {
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 0.15em;
+}
+
+.blog-arrow {
+    margin-top: auto;
+    padding-top: 0.6em;
+    font-weight: bold;
+    font-size: 0.85em;
+    color: var(--primary-color);
+}
+
+/* Feedback — full width clickable card */
+.about-feedback {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-feedback:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.feedback-arrow {
+    margin-top: auto;
+    padding-top: 0.6em;
+    font-weight: bold;
+    font-size: 0.95em;
+    color: var(--primary-color);
+}
+
+/* Responsive — stack on small screens */
+@media (max-width: 600px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .link-grid,
+    .blog-links {
+        grid-template-columns: 1fr;
+    }
+
+    .about-page {
+        padding: 1em 0 2em;
+    }
+}
