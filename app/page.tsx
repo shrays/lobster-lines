@@ -49,20 +49,19 @@ export default function IndexPage() {
 
   return (
     <>
-      {isLoading ? (
+      {isLoading && (
         <>
           <div className="loading-icon"></div>
           <span className='loading-text'>Loading...</span>
         </>
-      ) : (
-        <>
-          <MapComponent locations={locationData} />
-          {summaryData && <HorizontalScrollCards summaryData={summaryData} />}
-          <div className='middle-text'>
-            {summaryData && `Wait times based on real-time reservation availability.`}
-          </div>
-        </>
       )}
+      <div style={{ display: isLoading ? 'none' : 'contents' }}>
+        <MapComponent locations={locationData} />
+        {summaryData && <HorizontalScrollCards summaryData={summaryData} />}
+        <div className='middle-text'>
+          {summaryData && `Wait times based on real-time reservation availability.`}
+        </div>
+      </div>
     </>
   )
 }
