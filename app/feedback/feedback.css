@@ -45,3 +45,12 @@ input.btn[type="submit"] {
 input.btn[type="submit"]:hover {
     background: var(--secondary-color);
 }
+
+.honeypot {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}

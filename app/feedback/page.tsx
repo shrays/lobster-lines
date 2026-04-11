@@ -17,15 +17,24 @@ export default function FeedbackPage() {
     }
   };
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const form = event.currentTarget;
+    const honeypot = form.elements.namedItem('website') as HTMLInputElement;
+    if (honeypot && honeypot.value) {
+      event.preventDefault();
+    }
+  };
+
   return (
     <>
       <h1>Feedback Form</h1>
       <p className='description'>
         Have a question? Suggestion? Bug Report? Something Else?<br />Let me know and I'll try to respond (if you leave your email).
       </p>
-      <form id="feedback-form" action="https://api.sheetmonkey.io/form/2G6YLnabhn8kxuWR7WJzrh" method="POST">
+      <form id="feedback-form" action="https://api.sheetmonkey.io/form/2G6YLnabhn8kxuWR7WJzrh" method="POST" onSubmit={handleSubmit}>
         <input className="input_field" type="text" placeholder="Name" name="name" id="fname" />
         <input className="input_field" type="email" placeholder="Email Address" name="email" id="email" />
+        <input type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" className="honeypot" />
         <select className="input_field" name="responsetype" id="responsetype" onChange={handleSelectChange} style={{ color: selectColor }} defaultValue="">
           <option disabled value="">Select an Option*</option>
           <option value="suggestion">Suggestion</option>
