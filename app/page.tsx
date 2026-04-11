@@ -13,7 +13,6 @@ type Location = {
   zip: string,
   phone: string,
   rlid: string,
-  // lastUpdated: number,
 };
 
 type Summary = {
@@ -36,7 +35,6 @@ export default function IndexPage() {
         const response = await fetch('/api/lobster-locations');
         const json = await response.json();
       
-        const { locations, summary } = json;
         setLocationData(json.locations);
         setSummaryData(json.summary);
         setIsLoading(false);

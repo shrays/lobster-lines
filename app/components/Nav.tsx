@@ -40,13 +40,6 @@ export const Nav = () => {
           TRENDS
         </Link>
         <Link
-          className={`${styles.link} ${pathname === '/blog' ? styles.active : ''}`}
-          href="/blog"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          BLOG
-        </Link>
-        <Link
           className={`${styles.link} ${pathname === '/about' ? styles.active : ''}`}
           href="/about"
           onClick={() => setIsMenuOpen(false)}

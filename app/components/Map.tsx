@@ -12,7 +12,6 @@ type Location = {
   zip: string,
   phone: string,
   rlid: string,
-  // lastUpdated: number,
 };
 
 type MapComponentProps = {
